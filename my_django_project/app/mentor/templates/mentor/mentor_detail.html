@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">{{ mentor.user.get_full_name }}</h3>
+                <p class="card-text">{{ mentor.bio }}</p>
+                <div class="card-text">
+                    <p><strong>Expertise:</strong> {{ mentor.expertise }}</p>
+                    <p><strong>Years of Experience:</strong> {{ mentor.years_of_experience }}</p>
+                    <p><strong>Hourly Rate:</strong> ${{ mentor.hourly_rate }}</p>
+                    <p><strong>Availability:</strong> {% if mentor.is_available %}Available{% else %}Not Available{% endif %}</p>
+                    <p><strong>Member Since:</strong> {{ mentor.created_at|date:"F j, Y" }}</p>
+                    <p><strong>Last Updated:</strong> {{ mentor.updated_at|date:"F j, Y" }}</p>
+                </div>
+                <a href="{% url 'mentor:mentor_list' %}" class="btn btn-secondary">Back to Mentors</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    {% for mentor in mentors %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ mentor.user.get_full_name }}</h5>
+                <p class="card-text">{{ mentor.bio|truncatewords:30 }}</p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        Expertise: {{ mentor.expertise }}<br>
+                        Experience: {{ mentor.years_of_experience }} years<br>
+                        Rate: ${{ mentor.hourly_rate }}/hour
+                    </small>
+                </p>
+                <a href="{% url 'mentor:mentor_detail' mentor.pk %}" class="btn btn-info">View Profile</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-md-12">
+        <p>No mentors available at the moment.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %} 

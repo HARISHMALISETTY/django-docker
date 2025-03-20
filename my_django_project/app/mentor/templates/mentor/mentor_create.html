@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Create Mentor Profile</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <strong>Please correct the errors below:</strong>
+                            {{ form.errors }}
+                        </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label for="{{ form.bio.id_for_label }}" class="form-label">Bio</label>
+                            {{ form.bio }}
+                            {% if form.bio.help_text %}
+                            <div class="form-text">{{ form.bio.help_text }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.expertise.id_for_label }}" class="form-label">Expertise</label>
+                            {{ form.expertise }}
+                            {% if form.expertise.help_text %}
+                            <div class="form-text">{{ form.expertise.help_text }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.years_of_experience.id_for_label }}" class="form-label">Years of Experience</label>
+                            {{ form.years_of_experience }}
+                            {% if form.years_of_experience.help_text %}
+                            <div class="form-text">{{ form.years_of_experience.help_text }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.hourly_rate.id_for_label }}" class="form-label">Hourly Rate ($)</label>
+                            {{ form.hourly_rate }}
+                            {% if form.hourly_rate.help_text %}
+                            <div class="form-text">{{ form.hourly_rate.help_text }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.availability.id_for_label }}" class="form-label">Availability</label>
+                            {{ form.availability }}
+                            {% if form.availability.help_text %}
+                            <div class="form-text">{{ form.availability.help_text }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Create Profile</button>
+                            <a href="{% url 'mentor:mentor_list' %}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
